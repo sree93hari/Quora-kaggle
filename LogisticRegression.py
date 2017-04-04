@@ -7,6 +7,7 @@ from scipy.sparse import hstack
 from scipy.sparse import csr_matrix
 import pickle
 from sklearn.pipeline import Pipeline
+from clean import clean
 
 csv = pandas.read_csv("train.csv",header=None)
 
@@ -14,7 +15,7 @@ matrix = csv.as_matrix()
 line1 = matrix[:,3]
 line2 = matrix[:,4]
 
-q1_values = [str(m)+str(n) for m,n in zip(line1, line2)]
+q1_values = [clean(str(m))+clean(str(n)) for m,n in zip(line1, line2)]
 
 Y_train = np.array(map(str,matrix[:,5])).astype(np.int)
 print Y_train.shape
